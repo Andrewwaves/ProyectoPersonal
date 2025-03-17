@@ -44,6 +44,13 @@ public class OrdenadorRestController {
     public void borrar(@PathVariable int numero){
         ordenadorRepository.borrar(new Ordenador(numero));
     }
+
+
+    @GetMapping(params={"campo","valor"})
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Ordenador> filtrar(@RequestParam String campo, @RequestParam String valor) {
+        return ordenadorRepository.filtrar(campo,valor);
+    }
+    }
     
 
-}

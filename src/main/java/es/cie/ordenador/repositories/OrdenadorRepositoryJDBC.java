@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +34,7 @@ public class OrdenadorRepositoryJDBC implements OrdenadorRepository {
         plantilla.update("delete from ordenadores where numero=?",ordenador.getNumero());
     }
 
+    public List<Ordenador> filtrar(@Param("campo") String campo, @Param("valor") String valor) {
+    return plantilla.query("SELECT o FROM Ordenador o WHERE o.:campo = :valor",new OrdenadorRowMapper());
+    }
 }

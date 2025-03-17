@@ -9,5 +9,6 @@ public interface OrdenadorRepository {
     List <Ordenador> buscarTodos();
     void insertar(Ordenador ordenador);
     void borrar (Ordenador ordenador);
+    List<Ordenador> obtenerOrdenadoresPorMarca(String marca);
 
 }
